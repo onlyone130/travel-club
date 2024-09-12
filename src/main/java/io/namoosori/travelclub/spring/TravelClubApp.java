@@ -7,19 +7,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public class TravelClubApp {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        String [] beanNames = context.getBeanDefinitionNames();
+        String[] beanNames = context.getBeanDefinitionNames();
         System.out.println(Arrays.toString(beanNames));
 
-        TravelClubCdo clubCdo = new TravelClubCdo("TravelClub","Test TravelClub");
+        TravelClubCdo clubCdo = new TravelClubCdo("TravelClub", "Test TravelClub");
         ClubService clubService = context.getBean("clubService", ClubService.class);
 
         String clubId = clubService.registerClub(clubCdo);
-        System.out.println("ID : " + clubId);
+
+        TravelClub foundedClub = clubService.findClubById(clubId);
+        System.out.println("Club name " + foundedClub.getName());
+        System.out.println("Club intro " + foundedClub.getIntro());
+        //System.out.println("Club foundationTime " + foundedClub.getFoundationTime());
+        System.out.println("Club name " + new Date(foundedClub.getFoundationTime()));
     }
 }

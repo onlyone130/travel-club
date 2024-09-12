@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NameValue {
-    //
+    //두가지 필드를 가지는 클래스
     private String name;
     private String value;
 

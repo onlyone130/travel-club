@@ -69,6 +69,7 @@ public class TravelClub extends Entity {
 		//
 		for (NameValue nameValue : nameValues.getNameValues()) {
 			String value = nameValue.getValue();
+			//name 과 intro 두 가지 모두 변경한다면 반복문을 돌면서 값을 변경할 것.
 			switch (nameValue.getName()) {
 				case "name":
 					checkNameValidation(value);
