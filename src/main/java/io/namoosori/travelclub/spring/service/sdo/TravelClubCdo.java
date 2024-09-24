@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TravelClubCdo implements Serializable {
+public class TravelClubCdo extends io.namoosori.travelclub.web.service.sdo.TravelClubCdo implements Serializable {
     //
     private String name;
     private String intro;
