@@ -1,10 +1,11 @@
 package io.namoosori.travelclub.web.controller;
 
 import io.namoosori.travelclub.spring.service.sdo.TravelClubCdo;
+import io.namoosori.travelclub.web.aggregate.club.TravelClub;
 import io.namoosori.travelclub.web.service.ClubService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //사용자 요청을 처리하기 위해서 서비스에 접근하는 클래스를 ControllerService라고 한다.
 @RestController
@@ -27,5 +28,17 @@ public class ClubController {
     @PostMapping("/club") //localhost:8090/club
     public String register(@RequestBody TravelClubCdo travelClubCdo) {
         return clubService.registerClub(travelClubCdo);
+    }
+
+    //retreive 매소드 구현. 전체 club 조회
+    @GetMapping("/club/all")
+    public List<TravelClub> findAll() {
+        return clubService.findAll();
+    }
+
+    //url을 보낼 때, clubId라는 값을 find() 안에 넣는 동작
+    @GetMapping("/club/{clubId}")
+    public TravelClub find(@PathVariable String clubId){
+        return clubService.findClubById(clubId);
     }
 }
