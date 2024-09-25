@@ -3,6 +3,7 @@ package io.namoosori.travelclub.web.controller;
 import io.namoosori.travelclub.spring.service.sdo.TravelClubCdo;
 import io.namoosori.travelclub.web.aggregate.club.TravelClub;
 import io.namoosori.travelclub.web.service.ClubService;
+import io.namoosori.travelclub.web.shared.NameValueList;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +49,16 @@ public class ClubController {
     public List<TravelClub> findByName(@RequestParam String name) { //getMapping에 있어서 url 3개가 구분이 되게 된다. url 충돌 발생 사라짐.
         System.out.println(name);
         return clubService.findClubsByName(name);
+    }
+
+    //수정할 때는 putMapping이다. 파라미터를 보낼 때 http body에 담겨서 온다. 그렇기 때문에 requestbody annotation을 사용해야한다.
+    @PutMapping("/club/{clubId}")
+    public void modify(@PathVariable String clubId, @RequestBody NameValueList nameValueList){
+        clubService.modify(clubId, nameValueList);
+    }
+
+    @DeleteMapping("/club/{clubId}")
+    public void delete(@PathVariable String clubId){
+        clubService.remove(clubId);
     }
 }
