@@ -41,4 +41,12 @@ public class ClubController {
     public TravelClub find(@PathVariable String clubId){
         return clubService.findClubById(clubId);
     }
+
+    //아래와 같은 코드로 실행하게 되면 어떠한 url을 가져와야하는지 모르기 때문에 500 에러가 발생하게 된다.
+    //@GetMapping("/club/{name}")
+    @GetMapping("/club") //localhost:8090/club?name=JavaClub
+    public List<TravelClub> findByName(@RequestParam String name) { //getMapping에 있어서 url 3개가 구분이 되게 된다. url 충돌 발생 사라짐.
+        System.out.println(name);
+        return clubService.findClubsByName(name);
+    }
 }
