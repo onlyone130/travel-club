@@ -1,2 +1,26 @@
 server:
   port: 8090
+
+spring:
+  h2:
+    #실제 데이터가 들어가는지 확인하기 위해서는 콘솔(콘솔 접근 path도 지정핻야함)을 이용해야한다.
+    console:
+      enabled: true
+      path: /h2-console
+
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+
+  jpa:
+    #우리가 사용하는 데이터베이스가 h2 데이터베이스이기 때문에 jpa에 의해서 쿼리가 생성되어 만들어질 때 h2쿼리를 적용하여 만들라는 의미.
+    database-platform: org.hibernate.dialect.H2Dialect
+    #쿼리가 만들어질 때 확인할 수 있음.
+    show_sql: true
+    #쿼리가 나올 때 정돈된 형태로 나오는 것을 확인할 수 있음.
+    properties:
+      hibernate:
+        format_sql: true
