@@ -54,6 +54,7 @@ public class ClubJpaStore implements ClubStore {
 
     @Override
     public void update(TravelClub club) {
+        //select를 통해서 해당 데이터의 유무에 따라서 update가 진행됨
         clubRepository.save(new TravelClubJpo(club));
     }
 
