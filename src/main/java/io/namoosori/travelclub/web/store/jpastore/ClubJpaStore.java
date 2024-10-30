@@ -23,6 +23,7 @@ public class ClubJpaStore implements ClubStore {
 
     @Override
     public String create(TravelClub club) {
+        //저장하고자하는 데이터가 테이블에 있는지 확인을 하고, 없다라면 새롭게 insert를 하는 것이고, 기존에 있다면 데이터 변경이 일어나는 update를 진행하는 것.
         clubRepository.save(new TravelClubJpo(club));
         return club.getId();
     }
@@ -53,16 +54,16 @@ public class ClubJpaStore implements ClubStore {
 
     @Override
     public void update(TravelClub club) {
-
+        clubRepository.save(new TravelClubJpo(club));
     }
 
     @Override
     public void delete(String clubId) {
-
+        clubRepository.deleteById(clubId);
     }
 
     @Override
     public boolean exists(String clubId) {
-        return false;
+        return clubRepository.existsById(clubId);
     }
 }
