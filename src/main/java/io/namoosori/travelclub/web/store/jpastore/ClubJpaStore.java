@@ -48,7 +48,10 @@ public class ClubJpaStore implements ClubStore {
 
     @Override
     public List<TravelClub> retrieveByName(String name) {
-        return List.of();
+        //실제로 이름이 같은 club을 찾아서
+        List<TravelClubJpo> clubJpos = clubRepository.findAllByName(name);
+        //리턴해주기
+        return clubJpos.stream().map(TravelClubJpo::toDomain).collect(Collectors.toList());
     }
 
 
